@@ -10,6 +10,7 @@ import ProductList from "./pages/productList/ProductList";
 import ListList from "./pages/listList/ListList";
 import Product from "./pages/product/Product";
 import NewProduct from "./pages/newProduct/NewProduct";
+import NewList from "./pages/newList/NewList";
 
 import List from "./pages/list/List";
 import Login from "./pages/login/Login";
@@ -60,7 +61,7 @@ function App() {
                 <List />
               </Route>
               <Route path="/newlist">
-                <NewProduct />
+                <NewList />
               </Route>
             </div>
           </>
