@@ -1,14 +1,18 @@
 import "./newList.css";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import storage from "../../firebase";
-import { createMovie } from "../../context/movieContext/apiCalls";
+import { getMovies } from "../../context/movieContext/apiCalls";
 import { MovieContext } from "../../context/movieContext/MovieContext";
 import { ListContext } from "../../context/listContext/ListContext";
 export default function NewList() {
   const [list, setList] = useState(null);
 
   const { dispatch } = useContext(ListContext);
-  const { movie, dispatch: dispatchMovie } = useContext(MovieContext);
+  const { movies, dispatch: dispatchMovie } = useContext(MovieContext);
+
+  useEffect(() => {
+    getMovies(dispatchMovie);
+  }, [dispatchMovie]);
 
   const handleChange = (e) => {
     //important
@@ -21,6 +25,14 @@ export default function NewList() {
   const handleSubmit = (e) => {
     e.preventDefault();
   };
+
+  const handleSelect = (e) => {
+    let value = Array.from(e.target.selectedOptions, (option) => option.value);
+    setList({ ...list, [e.target.name]: value });
+
+    console.log(e.target.selectedOptions);
+  };
+
   return (
     <div className="newProduct">
       <h1 className="addProductTitle">New Movie</h1>
@@ -46,8 +58,18 @@ export default function NewList() {
         <div className="addProductItem">
           <label>Type</label>
           <select name="type" onChange={handleChange}>
-            <options value="movie">Movie</options>
-            <options value="series">Series</options>
+            <option value="movie">Movie</option>
+            <option value="series">Series</option>
+          </select>
+        </div>
+        <div className="addProductItem">
+          <label>Content</label>
+          <select multiple name="content" onChange={handleSelect}>
+            {movies.map((movie) => (
+              <option ket={movie?._id} value={movie?._id}>
+                {movie?.title}
+              </option>
+            ))}
           </select>
         </div>
 
