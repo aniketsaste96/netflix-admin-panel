@@ -11,7 +11,7 @@ export default function WidgetSm() {
         const res = await axios.get("/users?new=true", {
           headers: {
             token:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGQxYWZkMDEyMTY4Mzc2MDhlNzVkOCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY0OTU2NzQwMSwiZXhwIjoxNjQ5OTk5NDAxfQ.EPMR7THr1Gcg7x0xK34bvIVMvb3uQWvmT1m7dw_zdA4",
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyNGQxYWZkMDEyMTY4Mzc2MDhlNzVkOCIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY1MDI2NjAwOSwiZXhwIjoxNjUwNjk4MDA5fQ.PElNgc0Saj3SiQtrNp4EuM9o4jhsszjCkTpXfA2xB2Y",
           },
         });
         setNewUsers(res?.data);
